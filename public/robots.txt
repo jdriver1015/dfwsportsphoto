@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /booking/
 
 Sitemap: https://dfwsportsphotography.com/sitemap.xml
