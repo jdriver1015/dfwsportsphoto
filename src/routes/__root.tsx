@@ -72,8 +72,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 const SITE_TITLE = "DFW Sports Photography | Youth Sports in Dallas–Fort Worth";
 const SITE_DESCRIPTION =
   "Cinematic youth sports photography across Dallas, Fort Worth, and the Metroplex — action, portraits, dance, and full team coverage.";
-const SOCIAL_IMAGE =
-  "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/df8a6eae-1f76-425e-9927-594526013750/id-preview-bb2aa222--d373358e-143a-4c63-aa61-b269d63df740.lovable.app-1785192707438.png";
+const SOCIAL_IMAGE = "https://dfwsportsphotography.com/og-image.jpg";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   staticData: { sitemap: false },
@@ -90,6 +89,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: SITE_TITLE },
       { name: "twitter:description", content: SITE_DESCRIPTION },
       { property: "og:image", content: SOCIAL_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:image", content: SOCIAL_IMAGE },
     ],
     links: [
