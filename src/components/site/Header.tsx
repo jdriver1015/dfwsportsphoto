@@ -29,7 +29,7 @@ export function Header() {
             </a>
           ))}
           <a
-            href="/#book"
+            href="/book"
             className="font-display text-sm tracking-widest whitespace-nowrap border border-accent text-accent px-5 py-2 hover:bg-accent hover:text-accent-foreground transition-colors"
           >
             BOOK SESSION
@@ -57,7 +57,7 @@ export function Header() {
               </a>
             ))}
             <a
-              href="/#book"
+              href="/book"
               onClick={() => setOpen(false)}
               className="font-display text-lg tracking-widest border border-accent text-accent px-4 py-2 text-center mt-2"
             >

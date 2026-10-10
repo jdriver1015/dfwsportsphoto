@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as BookRouteImport } from './routes/book'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ApiBookRouteImport } from './routes/api.book'
 import { Route as BookingTokenRouteImport } from './routes/booking.$token'
 
 const IndexRoute = IndexRouteImport.update({
@@ -24,9 +26,19 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BookRoute = BookRouteImport.update({
+  id: '/book',
+  path: '/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiBookRoute = ApiBookRouteImport.update({
+  id: '/api/book',
+  path: '/api/book',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookingTokenRoute = BookingTokenRouteImport.update({
@@ -38,34 +50,51 @@ const BookingTokenRoute = BookingTokenRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/book': typeof BookRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/api/book': typeof ApiBookRoute
   '/booking/$token': typeof BookingTokenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/book': typeof BookRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/api/book': typeof ApiBookRoute
   '/booking/$token': typeof BookingTokenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/book': typeof BookRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/api/book': typeof ApiBookRoute
   '/booking/$token': typeof BookingTokenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/sitemap.xml' | '/booking/$token'
+  fullPaths:
+    '/' | '/about' | '/book' | '/sitemap.xml' | '/api/book' | '/booking/$token'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/sitemap.xml' | '/booking/$token'
-  id: '__root__' | '/' | '/about' | '/sitemap.xml' | '/booking/$token'
+  to:
+    '/' | '/about' | '/book' | '/sitemap.xml' | '/api/book' | '/booking/$token'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/book'
+    | '/sitemap.xml'
+    | '/api/book'
+    | '/booking/$token'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BookRoute: typeof BookRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ApiBookRoute: typeof ApiBookRoute
   BookingTokenRoute: typeof BookingTokenRoute
 }
 
@@ -85,11 +114,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/book': {
+      id: '/book'
+      path: '/book'
+      fullPath: '/book'
+      preLoaderRoute: typeof BookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/book': {
+      id: '/api/book'
+      path: '/api/book'
+      fullPath: '/api/book'
+      preLoaderRoute: typeof ApiBookRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/booking/$token': {
@@ -105,7 +148,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BookRoute: BookRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ApiBookRoute: ApiBookRoute,
   BookingTokenRoute: BookingTokenRoute,
 }
 export const routeTree = rootRouteImport

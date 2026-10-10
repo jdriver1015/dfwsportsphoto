@@ -280,6 +280,7 @@ const testimonials = [
 
 const pricingTiers = [
   {
+    slug: "athlete-spotlight",
     name: "Athlete Spotlight",
     blurb: "One athlete, featured like a magazine cover.",
     pricePrefix: "Starting at",
@@ -297,6 +298,7 @@ const pricingTiers = [
     ],
   },
   {
+    slug: "team-portraits",
     name: "Team Portraits",
     blurb: "Polished team and individual portraits.",
     pricePrefix: "Starting at",
@@ -313,6 +315,7 @@ const pricingTiers = [
     ],
   },
   {
+    slug: "game-coverage",
     name: "Multi-Player Game Coverage",
     blurb: "Full sideline coverage of your game or tournament.",
     pricePrefix: "",
@@ -417,7 +420,7 @@ function Home() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start">
                 <a
-                  href="#book"
+                  href="/book"
                   className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 font-display tracking-widest text-sm hover:bg-white transition-colors"
                 >
                   BOOK A SESSION <ArrowRight size={16} />
@@ -638,7 +641,7 @@ function Home() {
                   ))}
                 </ul>
                 <a
-                  href="#book"
+                  href={`/book?package=${tier.slug}`}
                   className={`mt-8 block text-center font-display text-sm tracking-widest px-5 py-3 transition-colors ${
                     tier.featured
                       ? "bg-accent text-accent-foreground hover:bg-accent/90"
@@ -739,10 +742,10 @@ function Home() {
           </div>
           <h2 className="font-display text-5xl md:text-7xl leading-[0.95]">Preserve the season</h2>
           <p className="mt-6 text-white/80 max-w-xl mx-auto">
-            Weekends fill fast during the season. Reach out with your sport, dates, and city — we'll respond same-day.
+            Weekends fill fast during the season. Tell us your sport, dates, and city — we'll respond same-day.
           </p>
           <a
-            href="mailto:contact@dfwsportsphotography.com?subject=Booking%20Inquiry"
+            href="/book"
             className="inline-flex items-center gap-3 mt-10 bg-accent text-accent-foreground px-8 py-4 font-display tracking-widest hover:bg-white transition-colors"
           >
             BOOK A SESSION <ArrowRight size={18} />

@@ -146,7 +146,7 @@ function About() {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a
-            href="/#book"
+            href="/book"
             className="inline-flex items-center bg-primary px-7 py-3 font-display tracking-widest text-primary-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
           >
             BOOK SESSION

@@ -206,6 +206,11 @@ function Details({
   // booking shows what was paid, if anything.
   if (payable) rows.push(["Deposit due", money(due)]);
   else if (booking.deposit_paid_cents > 0) rows.push(["Deposit paid", money(booking.deposit_paid_cents)]);
+  // The balance, once the studio has invoiced it (after the game).
+  const invoiceUrl = booking.balance_invoice_url?.startsWith("https://") ? booking.balance_invoice_url : null;
+  if (invoiceUrl) rows.push(["Balance due", money(booking.balance_invoice_cents)]);
+  else if (booking.balance_paid_cents > 0) rows.push(["Balance paid", money(booking.balance_paid_cents)]);
+  const active = booking.status === "pending" || booking.status === "confirmed";
 
   return (
     <div>
@@ -232,6 +237,18 @@ function Details({
         ))}
       </dl>
 
+      {invoiceUrl && (
+        <div className="mt-10">
+          <a
+            href={invoiceUrl}
+            className="inline-flex items-center gap-3 bg-accent px-8 py-4 font-display tracking-widest text-accent-foreground transition-colors hover:bg-ink hover:text-white"
+          >
+            PAY {money(booking.balance_invoice_cents)} BALANCE <ArrowRight size={18} />
+          </a>
+          <p className="mt-4 text-sm text-muted-foreground">Includes sales tax where it applies.</p>
+        </div>
+      )}
+
       {payable && (
         <div className="mt-10">
           {booking.hold_expires_at && (
@@ -257,6 +274,16 @@ function Details({
       {payError && (
         <p role="alert" className="mt-6 text-sm text-destructive">
           {ERRORS[payError]}
+        </p>
+      )}
+
+      {active && (
+        <p className="mt-12 text-sm text-muted-foreground">
+          Need to change a date, or cancel?{" "}
+          <a href={CONTACT} className="underline underline-offset-4 hover:text-ink">
+            Email us
+          </a>{" "}
+          and we&rsquo;ll take care of it. Rain delays reschedule at no cost.
         </p>
       )}
     </div>
